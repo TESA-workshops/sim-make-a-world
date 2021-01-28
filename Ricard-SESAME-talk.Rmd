@@ -1,8 +1,8 @@
 ---
-title: "SESAME"
-subtitle: ""
+title: "SESAME - A while ago on an island far, far away ..."
+subtitle: "TESA Simulation Modelling workshop short presentation"
 author: "Daniel Ricard"
-date: "February 1-5 2021"
+date: "February 2 2021"
 output: 
   beamer_presentation:
     theme: "Madrid"
@@ -12,20 +12,24 @@ output:
 urlcolor: blue
 ---
 
----
-header-includes:
-- \newcommand{\hideFromPandoc}[1]{#1}
-- \hideFromPandoc{
-    \let\Begin\begin
-    \let\End\end
-  }
----
-
-
 ## Background
-- Commonwealth Scientific and Industrial Research Organisation (CSIRO)
-- Australian Fisheries Management Authority (AFMA)
-- Commission for the Conservation of Bluefin Tuna (CCSBT)
+
+\begin{columns}
+\column{0.6\textwidth}
+
+\href{https://fishesofaustralia.net.au/home/species/732}{Southern Bluefin Tuna}
+
+\includegraphics[width=0.8\textwidth]{./images/sbt.jpg}
+
+- The Commonwealth Scientific and Industrial Research Organisation (CSIRO) provides science advice to the Australian Fisheries Management Authority (AFMA) for international negotiations at the Commission for the Conservation of Bluefin Tuna (CCSBT)
+
+\column{0.4\textwidth}
+\begin{center}
+\includegraphics[width=0.5\textwidth]{./images/csiro.jpg}
+\includegraphics[width=0.75\textwidth]{./images/afma.png}
+\includegraphics[width=0.4\textwidth]{./images/ccsbt.png}
+\end{center}
+\end{columns}
 
 ## SESAME
 I was involved in this project when I worked at the CSIRO in 2001-2003.
@@ -36,21 +40,41 @@ My colleague Ann Preece was very good at formulating acronyms.
 SESAME: a simulation-estimation stock assessment model evaluation project focused on large pelagic species
 \end{quote}
 
-A [large report]("./references/SESAME-report-MLRS_241.pdf") documented the project.
+A [large report](./references/SESAME-report-MLRS_241.pdf) documented the project.
 
-This work laid some strong foundations to the Management Strategies Evaluation that subsequently took place for Southern Bluefin Tuna.
+This work laid some strong foundations for the Management Strategies Evaluation (MSE) that subsequently took place for Southern Bluefin Tuna.
+
+That MSE fizzled after the discovery of important unreported catches in the fishery, [see Polacheck (2012)](https://www.sciencedirect.com/science/article/pii/S0308597X1200036X).
+
+## SESAME
+
+\includegraphics[width=0.5\textwidth]{./images/sesame-coverpage1.png} \includegraphics[width=0.5\textwidth]{./images/sesame-coverpage2.png}
+
+## SESAME
+
+\includegraphics[width=0.8\textwidth]{./images/sesame-fig1.png}
 
 ## Do's - things that worked and that I would do the same
-- have a strong team that includes a database programmer
-- have clearly defined operating model scenarios
+- have a strong and diverse team 
+- have clearly defined set of operating model scenarios
 - have a clearly defined set of assessment models to apply to the simulated data
+- have clearly defined set of performance measures
 - have an agreed-upon format and a shared source for data inputs to models
 - have an agreed-upon format and a shared source for the outputs of assessment models
-- use R as the Swiss Army knife
+- use shell scripts and R as the Swiss Army knives
+
+## 4.5 DATABASE OVERVIEW
+
+>  We found a relational database to be an extremely powerful tool for organizing the operating model state realization summary statistics and assessment model estimates. Every assessment model fitting to each data realization produced a uniquely identifiable file of results that were uploaded to an ODBC-compliant database. In addition to stock assessment model estimates, these files potentially contained flags that were useful for diagnosing function minimization problems (e.g. final gradients of the objective function with respect to parameters).
+
+## 8 performance indicators for 16 assessment models from one OM run
+
+\begin{center}
+\includegraphics[width=0.45\textwidth]{./images/sesame-fig3a.png}
+\end{center}
 
 ## Dont's - things that I would do differently today
-- Use Word to write the report, this a completely unnecessary hassle
-
+- Use Word to write the report, this is a completely unnecessary hassle
 - Rely on an adhoc operating model, not because it was not a good operating model, just because it has been done before by now
 
 \vspace{0.5cm}
@@ -59,4 +83,11 @@ VSM (which is an abbreviation of virtual stock model) is a stand-alone Windows b
 application which simulates multi-species fisheries. - Appendix I SESAME Report
 \end{quote}
 
-- use source control software
+- use (enforce) source control software, nowadays this would be git
+- plan and program so that all analytical steps fall like dominoes
+
+## 4.6 QUALITY CONTROL
+
+> We endeavoured to test that operating and assessment models were implemented and documented correctly, but inevitably, coding errors occur in complicated software. The complexity of the simulations also led to mis-specifications and interpretation errors among participants, that sometimes were not recognized until well into the project when the technical documentation was being completed. When the errors were large, all affected results were re-run; relatively minor errors are documented and perhaps apparent only as peculiar model specifications. While we cannot be sure that all the errors were identified, the multitude of comparisons among independently coded population dynamics models gives us a reasonable degree of confidence that the gross features of most models behaved roughly as intended in the majority of cases.
+
+## Thank you
