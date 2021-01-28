@@ -11,3 +11,48 @@ output:
     slide_level: 2
 urlcolor: blue
 ---
+
+## Make a world
+
+\begin{columns}
+\column{0.6\textwidth}
+\begin{quote}
+Using simple shapes, Ed Emberley shows would-be artists how to draw over 400 things, such as an airplane, anteater, submarine, train, kangaroo, gondola, and much much more!
+\end{quote}
+\column{0.4\textwidth}
+\includegraphics[width=0.75\textwidth]{./images/emberley-cover.jpg}
+\end{columns}
+
+says Amazon, [the original book was published in 1972](https://en.wikipedia.org/wiki/Ed_Emberley)
+
+
+## Make a world
+
+As many good and profitable things, it has developed into a saga
+
+\includegraphics[width=0.3\textwidth]{./images/emberley-cover-faces.jpg}
+\includegraphics[width=0.3\textwidth]{./images/emberley-cover-trucks.jpg}
+\includegraphics[width=0.3\textwidth]{./images/emberley-cover-animals.jpg}
+
+## Make a world - overview
+
+\begin{columns}
+\column{0.6\textwidth}
+The breakout group will introduce some basic concepts for simulating observations using R
+\column{0.4\textwidth}
+\includegraphics[width=0.75\textwidth]{./images/emberley-page.jpg}
+\end{columns}
+
+
+## Apple orchard
+
+I will show some simulations of the process of estimating the number of apples in an orchard
+
+## Fish growth
+
+I will share some current ideas I am interested in exploring regarding fish growth and the ageing of fish using otoliths
+
+## Collaboration on the GitHub repository sim-make-a-world
+
+Clone or fork the [sim-make-a-world repository]( https://github.com/TESA-workshops/sim-make-a-world.git) which contains all the resources associated with the breakout group
+

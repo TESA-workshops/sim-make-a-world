@@ -23,6 +23,7 @@ header-includes:
 
 
 ## Outline
+- git workflow
 - apples
 - fishes
 
