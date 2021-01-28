@@ -1,5 +1,5 @@
 ---
-title: "SESAME - A while ago on an island far, far away ..."
+title: "A while ago on an island far, far away ..."
 subtitle: "TESA Simulation Modelling workshop short presentation"
 author: "Daniel Ricard"
 date: "February 2 2021"
@@ -48,7 +48,12 @@ That MSE fizzled after the discovery of important unreported catches in the fish
 
 ## SESAME
 
-\includegraphics[width=0.5\textwidth]{./images/sesame-coverpage1.png} \includegraphics[width=0.5\textwidth]{./images/sesame-coverpage2.png}
+\begin{columns}
+\column{0.5\textwidth}
+\includegraphics[width=0.9\textwidth]{./images/sesame-coverpage1.png} 
+\column{0.5\textwidth}
+\includegraphics[width=0.8\textwidth]{./images/sesame-coverpage2.png}
+\end{columns}
 
 ## SESAME
 
