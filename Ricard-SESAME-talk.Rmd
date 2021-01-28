@@ -2,7 +2,7 @@
 title: "SESAME"
 subtitle: ""
 author: "Daniel Ricard"
-date: "February 2021"
+date: "February 1-5 2021"
 output: 
   beamer_presentation:
     theme: "Madrid"
@@ -22,9 +22,41 @@ header-includes:
 ---
 
 
-## Outline
-- AFMA
-- 
+## Background
+- Commonwealth Scientific and Industrial Research Organisation (CSIRO)
+- Australian Fisheries Management Authority (AFMA)
+- Commission for the Conservation of Bluefin Tuna (CCSBT)
 
 ## SESAME
+I was involved in this project when I worked at the CSIRO in 2001-2003.
 
+My colleague Ann Preece was very good at formulating acronyms.
+\vspace{0.5cm}
+\begin{quote}
+SESAME: a simulation-estimation stock assessment model evaluation project focused on large pelagic species
+\end{quote}
+
+A [large report]("./references/SESAME-report-MLRS_241.pdf") documented the project.
+
+This work laid some strong foundations to the Management Strategies Evaluation that subsequently took place for Southern Bluefin Tuna.
+
+## Do's - things that worked and that I would do the same
+- have a strong team that includes a database programmer
+- have clearly defined operating model scenarios
+- have a clearly defined set of assessment models to apply to the simulated data
+- have an agreed-upon format and a shared source for data inputs to models
+- have an agreed-upon format and a shared source for the outputs of assessment models
+- use R as the Swiss Army knife
+
+## Dont's - things that I would do differently today
+- Use Word to write the report, this a completely unnecessary hassle
+
+- Rely on an adhoc operating model, not because it was not a good operating model, just because it has been done before by now
+
+\vspace{0.5cm}
+\begin{quote}
+VSM (which is an abbreviation of virtual stock model) is a stand-alone Windows based command line
+application which simulates multi-species fisheries. - Appendix I SESAME Report
+\end{quote}
+
+- use source control software

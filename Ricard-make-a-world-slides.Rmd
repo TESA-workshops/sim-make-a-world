@@ -1,0 +1,30 @@
+---
+title: "Make a world"
+subtitle: "Slides for break-out group"
+author: "Daniel Ricard"
+date: "February 1-5 2021"
+output: 
+  beamer_presentation:
+    theme: "Madrid"
+    colortheme: "whale"
+    fonttheme: "structurebold"
+    slide_level: 2
+urlcolor: blue
+---
+
+---
+header-includes:
+- \newcommand{\hideFromPandoc}[1]{#1}
+- \hideFromPandoc{
+    \let\Begin\begin
+    \let\End\end
+  }
+---
+
+
+## Outline
+- apples
+- fishes
+
+## Apples
+

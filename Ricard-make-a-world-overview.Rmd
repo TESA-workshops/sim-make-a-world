@@ -1,0 +1,13 @@
+---
+title: "Make a world"
+subtitle: "Overview of break-out group"
+author: "Daniel Ricard"
+date: "February 1-5 2021"
+output: 
+  beamer_presentation:
+    theme: "Madrid"
+    colortheme: "whale"
+    fonttheme: "structurebold"
+    slide_level: 2
+urlcolor: blue
+---
