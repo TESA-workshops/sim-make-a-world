@@ -2,7 +2,7 @@
 title: "Make a world"
 subtitle: "Slides for break-out group"
 author: "Daniel Ricard"
-date: "February 1-5 2021"
+date: "February 2-3 2021"
 output: 
   beamer_presentation:
     theme: "Madrid"
@@ -21,11 +21,100 @@ header-includes:
   }
 ---
 
+# Outline
+- agree on a git workflow
+- apples: we will working from the R Markdown Notebook called "orchard.Rmd"
+- fishes: we will working from the R Markdown Notebook called "age-and-growth.Rmd"
 
-## Outline
-- git workflow
-- apples
-- fishes
+# git workflow
+- clone vs. fork the sim-make-a-world repository 
+- pull (git pull origin main)
+- create your own branch (git checkout -b yourbranchname)
+- go nuts with your ideas and code contributions
+- add, commit, 
+- eventually, push
+- open a merge request / pull request
+- pull
 
-## Apples
+# Apples
+An orchard with 100 x 100 trees
 
+2 types of orchards:
+1 - uniform distribution of apple trees across the orchard (uniform orchard)
+2 - an orchard with equal proportions of "good" and "bad" trees (two-tier orchard)
+
+2 sampling strategies with similar time investments:
+a - sample 10 trees with a ladder (count all the apples in each tree)
+b - sample 20 trees from the ground (only count the apples that you can reach)
+
+Measure of performance:
+- minimize the probability of overestimating the number of apples in the orchard
+
+
+## Deterministic case - uniform orchard
+100 apples in each tree x 10,000 trees = 1,000,000 apples
+
+How many trees do you need to sample to estimate this value?
+
+What is the probability of overestimating the number of apples in the orchard?
+
+
+## Deterministic case - two-tier orchard
+100 apples in each tree x 5,000 trees = 500,000 apples
+50 apples in each tree x 5,000 trees = 250,000 apples
+for a total of 750,000 apples
+
+How many trees do you need to sample to estimate this value?
+
+What is the probability of overestimating the number of apples in the orchard?
+
+
+## Stochastic case
+Each tree has its own number of apples
+
+
+
+## Do we really need simulations for this?
+
+## Possible expansions (the slippery slope)
+
+
+# Fishes
+A fish population where growth is to be estimated
+
+2 types of growth
+1 - growth is the same for all individuals in the population
+2 - individuals in the population exhibit different growth based on the year they were born (cohort effect)
+
+2 sampling strategies
+a - use length-age pairs to estimate a growth model
+b - use individual growth trajectories to estimate a growth model
+
+Measure of performance:
+- minimize the probability of overestimating length-at-age
+
+
+## Deterministic case
+
+
+## Stochastic case
+
+
+## Possible expansions (the slippery slope)
+
+# Final words
+## Useful nuggets
+- the importance of seeding the random number generator
+- writing output as your simulations run, R Notebooks are pretty useful for exploratory analyses
+- loops vs. vectorized functions
+- how long will this simulation take to run?
+- 
+
+## staying the course
+1 - operating model realisations
+2 - analytic treatments
+3 - performance measures
+
+## getting lost in the possibilities
+
+# 

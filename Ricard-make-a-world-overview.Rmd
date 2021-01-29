@@ -60,7 +60,6 @@ I will show some simulations on estimating the number of apples in an orchard (s
 
 In putting the [notebook for this section](./orchard.nb.html) together (and looking at the participants list) I realised that it is perhaps basic for this workshop, so could provide a gentle introduction to the workshop
 
-
 ## Fish growth
 
 I will share some current ideas I am interested in exploring regarding fish growth and the ageing of fish using otoliths
@@ -70,7 +69,6 @@ How many otoliths do we need to age in order to get the information we want abou
 What are the trade-offs of looking at yearly growth increments instead of just collecting age-length pairs?
 
 This section is much more open-ended, and in reality I am looking for help, guidance and ideas to pursue this topic further
-
 
 ## Collaboration on the GitHub repository sim-make-a-world
 
@@ -83,4 +81,3 @@ I am hoping to stimulate conversations, bounce ideas around, foster potential co
 What are the key ingredients necessary to take a simulation study from "just an idea" to an interesting, replicable and defensible analysis
 
 Because the simulated world is infinite, where to draw the line? What are the major pitfalls to avoid in order to successfully turn a simulation study into a useful product?
-

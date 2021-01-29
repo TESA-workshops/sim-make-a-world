@@ -4,4 +4,87 @@ author: "Daniel Ricard"
 date: '`r paste0("Last modified timestap: ", format(Sys.time(), "%Y-%m-%d %H:%M:%S"))`'
 output: html_notebook
 ---
+```{r, echo=FALSE}
+library(ggplot2)
+```
+
+As part of a [TESA webinar](https://www.gcpedia.gc.ca/wiki/DFO_Science_TESA_ETES#Outputs_and_archive_of_material_from_some_previous_activities) that we did in October 2018, I had used a recent visit to an apple orchard to introduce the concepts of catchability and selectivity in fisheries surveys.
+
+# Deterministic case
+Let's look at the deterministic case:
+## Uniform orchard
+```{r deterministic-uniform}
+nx <- 100
+ny <- 100
+n.trees <- nx * ny
+n.apples.per.tree <- 100
+n.apples <- n.trees * n.apples.per.tree
+```
+which is just saying that there are `r format(n.trees, big.mark=",")` trees in the orchard, with a total of `r format(n.apples, big.mark=",")` apples.
+
+This is completely unnecessary here, but will become useful later, let's create a data frame with all the information about the orchard.
+```{r uniform1}
+uniform.orchard.df <- data.frame(tree.number=1:n.trees, n.apples=n.apples.per.tree)
+```
+Not surprisingly, there are still `r format(nrow(uniform.orchard.df), big.mark=",")` trees in the orchard, with a total of `r format(sum(uniform.orchard.df$n.apples), big.mark=",")` apples.
+
+To estimate the number of trees in the uniform orchard, we only need to sample one tree, and we learn nothing from adding additional samples . We will never overestimate the number of apples in the orchard in this scenario because we have perfect knowledge of the system. Increasing the number of samples does not change our perception of the system.
+```{r uniform2}
+sampling.df <- data.frame(n.samples=1:100,estimate=NA)
+for(i in 1:nrow(sampling.df)){
+  sampling.df[i,"estimate"] <- mean(uniform.orchard.df[sample(seq(0, n.trees), sampling.df[i,"n.samples"],replace=FALSE), "n.apples"]) * n.trees
+}
+g <- ggplot(sampling.df, aes(x=n.samples, y=estimate)) +
+  geom_line()
+g
+```
+## Two-tier orchard
+```{r deterministic-twotier}
+nx <- 100
+ny <- 100
+prop.bad <- 0.5
+n.trees <- nx * ny
+n.apples.per.good.tree <- 100
+n.apples.per.bad.tree <- 50
+n.apples <- (n.trees*(1-prop.bad) * n.apples.per.good.tree) + (n.trees*prop.bad * n.apples.per.bad.tree)
+```
+which is just saying that there are `r format(n.trees, big.mark=",")` trees in the orchard, with a total of `r format(n.apples, big.mark=",")` apples.
+
+
+```{r twotier1}
+twotier.orchard.df <- data.frame(tree.number=1:n.trees, n.apples=rep(c(n.apples.per.good.tree, n.apples.per.bad.tree), n.trees/2))
+```
+Not surprisingly, there are still `r format(nrow(twotier.orchard.df), big.mark=",")` trees in the orchard, with a total of `r format(sum(twotier.orchard.df$n.apples), big.mark=",")` apples.
+
+To correctly estimate the number of trees in the tow-tier orchard, we need to sample as little as two trees, if by chance we measure one good tree and one bad tree. As we add additional samples, and we get closer to a 50-50 split between good and bad trees, our estimate will converge towards the true number of apples. We will overestimate the number of apples in the orchard when we have sampled more good trees than bad trees.
+
+For looking at this, let's simulate how our estimate changes as we increase our number of samples. To investigate how additional samples improve our estimate, we will simulate sampling 100 trees and keeping track of our running estimate as we go.
+```{r twotier2}
+tree.numbers <- sample(seq(0, n.trees), 100)
+sampling.df <- data.frame(n.samples=1:100,estimate=NA)
+for(i in 1:100){
+  sampling.df[i, "estimate"] <- mean(twotier.orchard.df[tree.numbers[1:i], "n.apples"]) * n.trees
+  
+}
+g <- ggplot(sampling.df, aes(x=n.samples, y=estimate)) +
+  geom_line() + ylim(5E05, 1E06) + geom_abline(intercept=sum(twotier.orchard.df$n.apples))
+g
+```
+Note how the graph above is only one realisation of obtaining 100 samples, and it will change each time the code above is run because of the "sample" function. 
+
+```{r twotier3}
+plot(1:100, rep(1E06,100), type='n', ylim=c(5E05,1E06))
+for(n in 1:1000){
+tree.numbers <- sample(seq(0, n.trees), 100)
+sampling.df <- data.frame(n.samples=1:100,estimate=NA)
+for(i in 1:100){
+  sampling.df[i, "estimate"] <- mean(twotier.orchard.df[tree.numbers[1:i], "n.apples"]) * n.trees
+  
+}
+lines(1:100, sampling.df$estimate)
+}
+abline(a=sum(twotier.orchard.df$n.apples), b=0, lty=1)
+
+```
+The performance measure that we have identified is the probability of overestimating the number of apples in the orchard, which we can calculate using our simulations.
 
