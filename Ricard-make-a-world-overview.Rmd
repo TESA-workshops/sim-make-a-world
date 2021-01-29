@@ -2,7 +2,7 @@
 title: "Make a world"
 subtitle: "Overview of break-out group"
 author: "Daniel Ricard"
-date: "February 1-5 2021"
+date: "February 1 2021"
 output: 
   beamer_presentation:
     theme: "Madrid"
@@ -30,29 +30,57 @@ says Amazon, [the original book was published in 1972](https://en.wikipedia.org/
 
 As many good and profitable things, it has developed into a saga
 
-\includegraphics[width=0.3\textwidth]{./images/emberley-cover-faces.jpg}
-\includegraphics[width=0.3\textwidth]{./images/emberley-cover-trucks.jpg}
-\includegraphics[width=0.3\textwidth]{./images/emberley-cover-animals.jpg}
+\begin{center}
+\includegraphics[width=0.25\textwidth]{./images/emberley-cover-faces.jpg}
+\includegraphics[width=0.25\textwidth]{./images/emberley-cover-trucks.jpg}
+\includegraphics[width=0.25\textwidth]{./images/emberley-cover-animals.jpg}
+\end{center}
+
+\includegraphics[width=0.5\textwidth]{./images/emberley-works.png}
 
 ## Make a world - overview
 
 \begin{columns}
 \column{0.6\textwidth}
 The breakout group will introduce some basic concepts for simulating observations using R
+
 \column{0.4\textwidth}
-\includegraphics[width=0.75\textwidth]{./images/emberley-page.jpg}
+\begin{flushleft}
+  \only<1>{}
+  \only<2>{\includegraphics[width=0.75\textwidth]{./images/emberley-page.jpg}}
+  \only<3>{\includegraphics[width=0.75\textwidth]{./images/emberley-page2.jpg}}
+\end{flushleft}
+
 \end{columns}
 
 
 ## Apple orchard
 
-I will show some simulations of the process of estimating the number of apples in an orchard
+I will show some simulations on estimating the number of apples in an orchard (something I wanted to do as part of the [TESA webinars](https://www.gcpedia.gc.ca/wiki/DFO_Science_TESA_ETES#Outputs_and_archive_of_material_from_some_previous_activities) that we did in October 2018 for participants to prepare for the Intro to Stock Assessment course)
+
+In putting the [notebook for this section](./orchard.nb.html) together (and looking at the participants list) I realised that it is perhaps basic for this workshop, so could provide a gentle introduction to the workshop
+
 
 ## Fish growth
 
 I will share some current ideas I am interested in exploring regarding fish growth and the ageing of fish using otoliths
 
+How many otoliths do we need to age in order to get the information we want about fish growth?
+
+What are the trade-offs of looking at yearly growth increments instead of just collecting age-length pairs?
+
+This section is much more open-ended, and in reality I am looking for help, guidance and ideas to pursue this topic further
+
+
 ## Collaboration on the GitHub repository sim-make-a-world
 
 Clone or fork the [sim-make-a-world repository]( https://github.com/TESA-workshops/sim-make-a-world.git) which contains all the resources associated with the breakout group
+
+I am hoping to stimulate conversations, bounce ideas around, foster potential collaborations, and learn from the wealth of expertise of the workshop attendees
+
+## Topics to discuss and debate
+
+What are the key ingredients necessary to take a simulation study from "just an idea" to an interesting, replicable and defensible analysis
+
+Because the simulated world is infinite, where to draw the line? What are the major pitfalls to avoid in order to successfully turn a simulation study into a useful product?
 
