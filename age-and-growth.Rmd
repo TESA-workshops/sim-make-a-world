@@ -5,3 +5,72 @@ date: '`r paste0("Last modified timestap: ", format(Sys.time(), "%Y-%m-%d %H:%M:
 output: html_notebook
 ---
 
+Every year when I go to see during our annual southern Gulf of St. Lawrence survey, I keep thinking about how and why we collect fish otoliths.
+
+In a given year, our technicians will spend months again otoliths. The process consists in preparing otoliths, reading them and noting the age of the individual that the animal came from.
+
+What is this information used for?
+
+How many otoliths do we need to age?
+
+A more involved procedure consists in not only counting the rings on the otolith, but also measuring the growth increments visible on each otolith.
+
+So let's explore the trade-offs between ageing fish and obtaining age-length pairs versus ageing a fewer number of fish while measuring growth increments.
+
+# Simulating fish growth
+The commonly used von Bertalanffy model can be used to simulate age-length pairs, and also to simulate growth trajectories.
+
+```{r vb}
+ages <- seq(0,25,0.2)
+vb.L0 <- 1
+vb.Linf <- 60
+vb.k <- -0.2
+
+vb.f <- function(a){vb.Linf + (vb.L0 - vb.Linf) * exp(vb.k*a)}
+lengths <- vb.f(ages)
+vb.df <- data.frame(a=ages, L=lengths)
+plot(L~a, data=vb.df)
+
+## can we estimate this model?
+# vb.fit <- nls(L ~ Linf + (L0-Linf) * exp(k * a), data=vb.df, start=list(Linf=60, k=-0.2, L0=1))
+
+vb.df$L <-vb.df$L + rnorm(length(ages),0,5)
+plot(L~a, data=vb.df)
+vb.fit <- nls(L ~ Linf + (L0-Linf) * exp(k * a), data=vb.df, start=list(Linf=60, k=-0.2, L0=1))
+lines(ages, predict(vb.fit), col="red", lwd=2)
+vb.fit
+```
+Now simulate two different growth curves.
+```{r vb2}
+ages <- seq(0,25,0.2)
+vb.L0 <- 1
+vb.Linf <- c(60,100)
+vb.k <- c(-0.2,-0.1)
+
+vb.f <- function(a, L0, Linf, k){Linf + (L0 - Linf) * exp(k*a)}
+
+vb.df <- rbind(
+data.frame(type="type1",a=ages,L=vb.f(ages, vb.L0, vb.Linf[1], vb.k[1])),
+data.frame(type="type2",a=ages,L=vb.f(ages, vb.L0, vb.Linf[2], vb.k[2]))
+)
+g <- ggplot(vb.df, aes(x=a,y=L)) + geom_line(aes(col=type))
+g
+
+```
+So the "k" parameter in a VB should really not be interpreted as a"growth rate".
+
+
+# Age-length pairs
+This is the run-of-the-mill data collected after examination of otoliths. We have the details of the individual fish from which the otoliths was collected, when and where it was caught, its length and weight, its sex, its maturity status. 
+
+Typically in fisheries surveys, the number of otoliths collected is stratified by fish lengths. So let's simulate the collection of age-length pairs and see if we can estimate our VB model parameters.
+
+```{r}
+
+```
+
+# Growth increments
+An alternative but more demanding way is to examine an otolith under a microscope and to measure the radius of each ring along a pre-determined axis.
+
+
+
