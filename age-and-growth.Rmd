@@ -60,17 +60,19 @@ g
 So the "k" parameter in a VB should really not be interpreted as a"growth rate".
 
 
-# Age-length pairs
+## Age-length pairs
 This is the run-of-the-mill data collected after examination of otoliths. We have the details of the individual fish from which the otoliths was collected, when and where it was caught, its length and weight, its sex, its maturity status. 
 
-Typically in fisheries surveys, the number of otoliths collected is stratified by fish lengths. So let's simulate the collection of age-length pairs and see if we can estimate our VB model parameters.
+Typically in fisheries surveys, the number of otoliths collected is stratified by fish lengths. So let's simulate the collection of age-length pairs and see if we can estimate our VB model parameters. 
 
 ```{r}
 
 ```
 
-# Growth increments
+## Growth increments
 An alternative but more demanding way is to examine an otolith under a microscope and to measure the radius of each ring along a pre-determined axis.
 
 
+
+# Age-length keys and calculating catch-at-age
 

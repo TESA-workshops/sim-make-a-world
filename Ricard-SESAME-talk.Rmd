@@ -42,7 +42,7 @@ SESAME: a simulation-estimation stock assessment model evaluation project focuse
 
 A [large report](./references/SESAME-report-MLRS_241.pdf) documented the project.
 
-This work laid some strong foundations for the Management Strategies Evaluation (MSE) that subsequently took place for Southern Bluefin Tuna.
+This work laid strong foundations for the Management Strategies Evaluation (MSE) that subsequently took place for Southern Bluefin Tuna.
 
 That MSE fizzled after the discovery of important unreported catches in the fishery, [see Polacheck (2012)](https://www.sciencedirect.com/science/article/pii/S0308597X1200036X).
 
@@ -59,14 +59,14 @@ That MSE fizzled after the discovery of important unreported catches in the fish
 
 \includegraphics[width=0.8\textwidth]{./images/sesame-fig1.png}
 
-## Do's - things that worked and that I would do the same
+## Do's - things that worked 
 - have a strong and diverse team 
 - have clearly defined set of operating model scenarios
 - have a clearly defined set of assessment models to apply to the simulated data
 - have clearly defined set of performance measures
 - have an agreed-upon format and a shared source for data inputs to models
 - have an agreed-upon format and a shared source for the outputs of assessment models
-- use shell scripts and R as the Swiss Army knives
+- use shell scripts and R as the Swiss Army knives and Duct tape
 
 ## 4.5 DATABASE OVERVIEW
 
@@ -78,9 +78,9 @@ That MSE fizzled after the discovery of important unreported catches in the fish
 \includegraphics[width=0.45\textwidth]{./images/sesame-fig3a.png}
 \end{center}
 
-## Dont's - things that I would do differently today
+## Dont's - things that could be improved
 - Use Word to write the report, this is a completely unnecessary hassle
-- Rely on an adhoc operating model, not because it was not a good operating model, just because it has been done before by now
+- Rely on an adhoc operating model, not because VSM was not a good operating model, just because it has been done before by now
 
 \vspace{0.5cm}
 \begin{quote}
@@ -89,7 +89,7 @@ application which simulates multi-species fisheries. - Appendix I SESAME Report
 \end{quote}
 
 - use (enforce) source control software, nowadays this would be git
-- plan and program so that all analytical steps fall like dominoes
+- plan analyses and program software so that all analytical steps fall like dominoes
 
 ## 4.6 QUALITY CONTROL
 
