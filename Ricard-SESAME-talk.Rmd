@@ -96,3 +96,5 @@ application which simulates multi-species fisheries. - Appendix I SESAME Report
 > We endeavoured to test that operating and assessment models were implemented and documented correctly, but inevitably, coding errors occur in complicated software. The complexity of the simulations also led to mis-specifications and interpretation errors among participants, that sometimes were not recognized until well into the project when the technical documentation was being completed. When the errors were large, all affected results were re-run; relatively minor errors are documented and perhaps apparent only as peculiar model specifications. While we cannot be sure that all the errors were identified, the multitude of comparisons among independently coded population dynamics models gives us a reasonable degree of confidence that the gross features of most models behaved roughly as intended in the majority of cases.
 
 ## Thank you
+
+when talking about your well-designed methods, always replace "easy" or "simple" with "elegant"
