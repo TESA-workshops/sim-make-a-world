@@ -68,7 +68,7 @@ How many otoliths do we need to age in order to get the information we want abou
 
 What are the trade-offs of looking at yearly growth increments instead of just collecting age-length pairs?
 
-This section is much more open-ended, and in reality I am looking for help, guidance and ideas to pursue this topic further.
+This section is much more open-ended, and in reality I am looking for help, guidance and ideas to pursue this topic further. Think of it as a coding fest to help me answer a few questions about strategies for ageing otoliths.
 
 
 ## Collaboration on the GitHub repository sim-make-a-world
