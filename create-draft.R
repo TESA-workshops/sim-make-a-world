@@ -1,3 +1,5 @@
-remotes::install_github("rstudio/rticles")
+## remotes::install_github("rstudio/rticles")
 
-plos_article()
+rmarkdown::draft("otolith-ageing-article.Rmd", template = "acm", package = "rticles")
+
+
