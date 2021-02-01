@@ -88,13 +88,10 @@ What is the probability of overestimating the number of apples in the orchard?
 
 
 
-
-
 ## Do we really need simulations for this?
 
 
 ## Possible expansions (the slippery slope)
-
 
 
 

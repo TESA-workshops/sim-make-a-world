@@ -109,7 +109,7 @@ print(paste0("n=", n, " p(overestimate) = ", tt[2]/sum(tt)))
 
 ```
 
-Why is this the case that our number of samples doesn't improve our chance of not overestimating the number of apples in the orchard? And why is it not 50% across the board? Why are the probabilites of overestimating the number of apples smaller when we have an odd number of samples?
+Why is this the case that our number of samples doesn't improve our chance of not overestimating the number of apples in the orchard? And why is it not 50% across the board? Why are the probabilities of overestimating the number of apples smaller when we have an odd number of samples?
 
 
 The performance measure that we have identified is the probability of overestimating the number of apples in the orchard, which we can calculate using our simulations.
