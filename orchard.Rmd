@@ -181,10 +181,10 @@ stochastic.list[[n]] <- sampling.df
 abline(a=sum(sto.df$n.apples), b=0, lty=1)
 
 ## 
-## what is the probability of overestimating the true number of apples?
-for(i in 1:30){
-tt <- table(do.call(rbind, lapply(1:n.sims, function(ns){stochastic.list[[ns]][i,"estimate"] > sum(sto.df[sto.df$sim.number==ns,"n.apples"])})))
-print(paste0("n=", i, " p(overestimate)=", tt[1]/sum(tt)))
+## what is the probability of estimating the true number of apples with more than 10% error?
+for(i in 1:10){
+tt <- table(do.call(rbind, lapply(1:n.sims, function(ns){abs(stochastic.list[[ns]][i,"estimate"] - sum(sto.df[sto.df$sim.number==ns,"n.apples"])) > 0.10*sum(sto.df[sto.df$sim.number==ns,"n.apples"])})))
+print(paste0("n=", i, " p(estimate off by more than 10%)=", tt[2]/sum(tt)))
 }
 
 ```

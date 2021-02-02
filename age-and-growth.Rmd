@@ -66,13 +66,86 @@ This is the run-of-the-mill data collected after examination of otoliths. We hav
 Typically in fisheries surveys, the number of otoliths collected is stratified by fish lengths. So let's simulate the collection of age-length pairs and see if we can estimate our VB model parameters. 
 
 ```{r}
+## generate 1E06 growth trajectories
+set.seed(1973)
+
+vb.L0 <- 2
+## VB Linf
+vb.Linf.mean <- 60
+vb.Linf.sd <- 10
+
+## VB k
+vb.k.mean <- 0.25
+vb.k.sd <- 0.05
+
+n.sim <- 1E06
+fish.number <- 1:n.sim
+fish.Linf <- rnorm(n.sim, vb.Linf.mean, vb.Linf.sd)
+fish.k <- rnorm(n.sim, vb.k.mean, vb.k.sd)
+
+fishes <- data.frame(
+  fish.number=rep(fish.number, each=20),
+  Linf=rep(fish.Linf, each=20),
+  k=rep(fish.k, each=20),
+  age=rep(1:20, n.sim)
+  )
+fishes$u.id <- paste(fishes$fish.number, fishes$age, sep="-")
+fishes$length <- fishes$Linf + (vb.L0-fishes$Linf) * exp(-fishes$k* fishes$age)
+
+## for each of 100 fish, select an age at which it will be captured
+n.caught <- 100
+caught.df <- data.frame(fish.number=sample(1:n.sim, n.caught, replace=FALSE), age=sample(1:20, n.caught, replace=TRUE))
+caught.df$u.id <- paste(caught.df$fish.number, caught.df$age, sep="-")
+
+ss <- which(fishes$u.id %in% caught.df$u.id)
+
+age.length.pairs <- fishes[ss,c("length","age")]
+
+vb.fit1 <- nls(length ~ Asym + (L0-Asym) * exp(-lrc * age), data=age.length.pairs, start=list(Asym=vb.Linf.mean, lrc=vb.k.mean, L0=vb.L0))
+
+summary(vb.fit1)
+
+plot(length~jitter(age), data=age.length.pairs, pch=19, col=grey(0.8))
+ages <- seq(0,20,0.25)
+lines(ages, predict(vb.fit1, newdata=data.frame(age=ages)), col="red", lwd=2)
 
 ```
 
 ## Growth increments
 An alternative but more demanding way is to examine an otolith under a microscope and to measure the radius of each ring along a pre-determined axis.
 
+```{r}
+## now identify 100 individuals and use their growth trajectories
+n.detail <- 100
 
+n.sim <- 1E06
+
+detail.df <- data.frame(fish.number=sample(1:n.sim, n.detail, replace=FALSE), age=sample(1:20, n.detail, replace=TRUE))
+detail.df$u.id <- paste(detail.df$fish.number, detail.df$age, sep="-")
+
+back.calc.df <- data.frame(fish.number=-99, Linf=-99, k=-99, age=-99, u.id="-99-99", length=-99)
+
+## for each fish, keep only the ages before its capture
+## for JAGS
+n.rows <- length(unique(detail.df$fish.number))
+for.fish.matrix <- matrix(rep(NA, 20*n.rows), nr=n.rows)
+dimnames(for.fish.matrix) <- list(fish.number=unique(detail.df$fish.number), age=1:20)
+
+for(f in 1:n.detail){
+  this.fish <- detail.df$fish.number[f]
+  this.age <- detail.df$age[f]
+  temp.df <- fishes[fishes$fish.number==this.fish & fishes$age <= this.age,]
+  back.calc.df <- rbind(back.calc.df, temp.df)
+  for.fish.matrix[as.character(this.fish),1:nrow(temp.df)] <- temp.df$length
+}
+
+back.calc.df <- back.calc.df[2:nrow(back.calc.df),]
+
+par(mar=c(3,3,0.1,0.3))
+plot(1:20, for.fish.matrix[1,], xlim=c(1,20), ylim=c(0,80), type='l')
+for(r in 2:100){points(1:20,for.fish.matrix[r,],type='l')}
+
+```
 
 # Age-length keys and calculating catch-at-age
 

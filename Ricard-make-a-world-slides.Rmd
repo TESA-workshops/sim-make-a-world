@@ -44,11 +44,11 @@ An orchard with 100 x 100 trees
 2 - an orchard with equal proportions of "good" and "bad" trees (two-tier orchard)
 
 2 sampling strategies with similar time investments:
-a - sample 10 trees with a ladder (count all the apples in each tree)
-b - sample 20 trees from the ground (only count the apples that you can reach)
+a - sample trees with a ladder (count all the apples in each tree)
+b - sample trees from the ground (only count the apples that you can reach)
 
 Measure of performance:
-- minimize the probability of overestimating the number of apples in the orchard
+- the probability of wrongly estimating the number of apples in the orchard by more than x%
 
 
 ## Deterministic case - uniform orchard
@@ -86,7 +86,7 @@ What is the probability of overestimating the number of apples in the orchard?
 
 ## Sampling from distributions in R
 
-
+see ?family in R
 
 ## Do we really need simulations for this?
 
@@ -107,7 +107,7 @@ a - use length-age pairs to estimate a growth model
 b - use individual growth trajectories to estimate a growth model
 
 Measure of performance:
-- minimize the probability of overestimating length-at-age
+- minimize the probability of incorrectly estimating length-at-age matrices
 
 
 ## Deterministic case
@@ -120,7 +120,7 @@ Measure of performance:
 
 # Final words
 ## Useful nuggets
-- the importance of seeding the random number generator
+- the importance of seeding the random number generator (set.seed function in R)
 - writing output as your simulations run, R Notebooks are pretty useful for exploratory analyses
 - loops vs. vectorized functions
 - how long will this simulation take to run?
