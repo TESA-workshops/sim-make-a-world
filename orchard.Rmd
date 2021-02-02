@@ -1,6 +1,6 @@
 ---
 title: "Make a world - Apples"
-author: "Daniel Ricard"
+author: "Daniel Ricard and breakout group participants"
 date: '`r paste0("Last modified timestap: ", format(Sys.time(), "%Y-%m-%d %H:%M:%S"))`'
 output: html_notebook
 ---

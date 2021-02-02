@@ -27,14 +27,14 @@ header-includes:
 - fishes: we will working from the R Markdown Notebook called "age-and-growth.Rmd"
 
 # git workflow
-- clone vs. fork the sim-make-a-world repository 
-- pull (git pull origin main)
-- create your own branch (git checkout -b yourbranchname)
+- clone the sim-make-a-world repository 
+- pull from the origin regularly (git pull origin main)
+- work from your own branch (git checkout -b yourbranchname)
 - go nuts with your ideas and code contributions
 - add, commit, 
 - eventually, push
 - open a merge request / pull request
-- pull
+- pull from the origin again after the request has been merged
 
 # Apples
 An orchard with 100 x 100 trees
@@ -90,9 +90,16 @@ see ?family in R
 
 ## Do we really need simulations for this?
 
+probably not, but it is not a bad way to explore things
+
+perhaps with added complexity the simulations would prove useful
 
 ## Possible expansions (the slippery slope)
 
+anything we would like to explore?
+
+- orchard with areas of different productivity (see what is gained by using stratified sampling)
+- add more variability in the number of apples per tree (e.g. use a negative binomial instead of a Poisson)
 
 
 # Fishes
