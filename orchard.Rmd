@@ -95,7 +95,7 @@ for(i in 1:100){
   sampling.df[i, "estimate"] <- mean(twotier.orchard.df[tree.numbers[1:i], "n.apples"]) * n.trees
   
 }
-lines(1:100, sampling.df$estimate)
+lines(1:100, sampling.df$estimate, colour=adjustcolor('black', alpha=05))
 deterministic.list[[n]] <- sampling.df
 }
 abline(a=sum(twotier.orchard.df$n.apples), b=0, lty=1)
