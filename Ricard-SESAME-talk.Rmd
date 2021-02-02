@@ -64,7 +64,7 @@ That MSE fizzled after the discovery of important unreported catches in the fish
 - have clearly defined set of operating model scenarios
 - have a clearly defined set of assessment models to apply to the simulated data
 - have clearly defined set of performance measures
-- have an agreed-upon format and a shared source for data inputs to models
+- have an agreed-upon format and a shared source for data inputs to the assessment models
 - have an agreed-upon format and a shared source for the outputs of assessment models
 - use shell scripts and R as the Swiss Army knives and Duct tape
 
@@ -88,7 +88,8 @@ VSM (which is an abbreviation of virtual stock model) is a stand-alone Windows b
 application which simulates multi-species fisheries. - Appendix I SESAME Report
 \end{quote}
 
-- use (enforce) source control software, nowadays this would be git
+If I had to repeat this work today:
+- enforce the use of source control software, nowadays this would be git
 - plan analyses and program software so that all analytical steps fall like dominoes
 
 ## 4.6 QUALITY CONTROL
