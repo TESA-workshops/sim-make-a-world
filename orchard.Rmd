@@ -30,7 +30,7 @@ uniform.orchard.df <- data.frame(tree.number=1:n.trees.uni, n.apples=n.apples.pe
 ```
 Not surprisingly, the simulated data frame informs us that there are still `r format(nrow(uniform.orchard.df), big.mark=",")` trees in the orchard, with a total of `r format(sum(uniform.orchard.df$n.apples), big.mark=",")` apples.
 
-To estimate the number of trees in the uniform orchard, we only need to sample one tree, and we learn nothing from adding additional samples . We will never overestimate the number of apples in the orchard in this scenario because we have perfect knowledge of the system. Increasing the number of samples does not change our perception of the system.
+To estimate the number of apples in the uniform orchard, we only need to sample one tree, and we learn nothing from adding additional samples . We will never overestimate the number of apples in the orchard in this scenario because we have perfect knowledge of the system. Increasing the number of samples does not change our perception of the system.
 
 ```{r uniform2}
 sampling.df <- data.frame(n.samples=1:100,estimate=NA)
@@ -64,7 +64,7 @@ twotier.orchard.df <- data.frame(tree.number=1:n.trees, n.apples=rep(c(n.apples.
 ```
 Not surprisingly, the simulated data frame informs us that there are still `r format(nrow(twotier.orchard.df), big.mark=",")` trees in the orchard, with a total of `r format(sum(twotier.orchard.df$n.apples), big.mark=",")` apples.
 
-To correctly estimate the number of trees in the tow-tier orchard, we need to sample as little as two trees, if by chance we measure one good tree and one bad tree. As we add additional samples, and we get closer to a 50-50 split between good and bad trees, our estimate will converge towards the true number of apples. We will overestimate the number of apples in the orchard when we have sampled more good trees than bad trees.
+To correctly estimate the number of trees in the two-tier orchard, we need to sample as little as two trees, if by chance we measure one good tree and one bad tree. As we add additional samples, and we get closer to a 50-50 split between good and bad trees, our estimate will converge towards the true number of apples. We will overestimate the number of apples in the orchard when we have sampled more good trees than bad trees.
 
 For looking at this, let's simulate how our estimate changes as we increase our number of samples. To investigate how additional samples improve our estimate, we will simulate sampling 100 trees and keeping track of our running estimate as we go. 
 ```{r twotier2}
