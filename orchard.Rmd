@@ -42,7 +42,7 @@ g <- ggplot(sampling.df, aes(x=n.samples, y=estimate)) +
 g
 ```
 
-This figure above conveys the information correctly, but it is erroneous in the way it examines the number of samples.
+This figure above conveys the information correctly, but it is erroneous in the way it examines the number of samples. Let's fix it by instead selecting 100 tree numbers at random, and then looking at the estimate we obtain as each additional tree is added.
 
 ## Two-tier orchard
 Let's now simulate an orchard where 50%$ of the trees have 100 apples and the other 50% of the tress have 50 apples.
