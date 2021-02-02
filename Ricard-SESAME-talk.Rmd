@@ -89,6 +89,7 @@ application which simulates multi-species fisheries. - Appendix I SESAME Report
 \end{quote}
 
 If I had to repeat this work today:
+
 - enforce the use of source control software, nowadays this would be git
 - plan analyses and program software so that all analytical steps fall like dominoes
 
