@@ -1,0 +1,143 @@
+[1:47 PM] Hajas, Wayne
+    
+I made it here
+​[1:53 PM] Hedges, Kevin J
+    
+(yes)
+​[2:01 PM] Warkentin, Luke
+    
+for people working in RStudio you can use the terminal tab (right by the console tab) to type the git commands. If you don't have a terminal tab there, you can use  Tools - New Terminal. Choosing the option under Tools - Terminal Options - New terminal open with "Git Bash" option. 
+(1 liked)​[2:25 PM] Tsitrin, Liza
+    
+Sorry Daniel, have to run to my meeting, I will be back! 
+
+[2:30 PM] Regular, Paul
+    
+c
+​[2:31 PM] Hajas, Wayne
+    
+c
+​[2:43 PM] Hajas, Wayne
+    
+As an aside:  Always set your random seed so you can repeat results exactly.
+​[3:01 PM] Hajas, Wayne
+    
+I"m back
+​[3:01 PM] Fatemeh Hatefi (Guest)
+    
+[3:01 PM] Boudreau, Mathieu
+    
+All set!
+​[3:07 PM] Forrest, Robyn
+    
+Hello, just popping in to listen
+​[3:17 PM] Hajas, Wayne
+    
+c
+​[3:19 PM] Quang Huynh (Guest)
+    c
+​[3:21 PM] Forrest, Robyn
+    
+Leaving for now. Very interesting
+
+
+[3:28 PM] Quang Huynh (Guest)
+    We seem to be referring to different things re: Linf. I was thinking of it as a population parameter but it seems we're plotting trajectories for individual fish
+​[3:29 PM] Hajas, Wayne
+    
+c
+​[3:34 PM] Kumar, Rajeev
+    
+https://link.springer.com/article/10.1007/s10651-020-00450-8
+
+
+[3:34 PM] Kumar, Rajeev
+    
+this paper discuss the problem with length-stratified sampling..that Paul was talking about
+(3 liked)​[3:35 PM] Warkentin, Luke
+    
+Q
+​[3:37 PM] Hajas, Wayne
+    
+dL/dt=k*(Linf-L)
+
+
+[3:37 PM] Hanke, Alex
+    
+Q
+​[3:43 PM] Kumar, Rajeev
+    
+I have to leave. It is kids pickup time in St. John's. Thank you very Dan for leading this session. It was really informative. appreciate your time. see you tomorrow
+​[3:48 PM] Hajas, Wayne
+    
+Could this be adapted to otolith measurments? https://cdnsciencepub.com/doi/pdf/10.1139/f02-069
+
+[3:50 PM] Hedges, Kevin J
+    
+Changes in growth curves could be indicative of environmental impacts on growth, or impacts of fishing on underlying demographics
+(1 liked)​[3:51 PM] Hanke, Alex
+    
+How is the age assignment of a key affected by the inclusion of non independent  age-length pairs arising from back calculation?
+​[3:51 PM] Forrest, Robyn
+    
+10 minutes of official time left. You have 90 minutes tomorrow to wrap up. Everyone will start again in the main meeting.
+
+
+[3:53 PM] Forrest, Robyn
+    
+I think I will have to reassign everyone to groups tomorrow, so if those who can could log on 5-10 minutes early that would help speed things up
+(2 liked)​[3:54 PM] Hedges, Kevin J
+    
+Following Alex's comment, looking at individual level variation in growth curves could be informative for assessing the chance of mis-assigning individuals to age classes based on age-length keys
+​[3:58 PM] Warkentin, Luke
+    
+Q
+[3:58 PM] Obradovich, Shannon
+    
+github q
+​[4:02 PM] Fitzsimmons, Michelle
+    
+Thank you!
+​[4:02 PM] Fatemeh Hatefi (Guest)
+    
+Thank you !
+​[4:02 PM] Milligan, Marina
+    Thanks Daniel!
+[4:03 PM] Tsitrin, Liza
+    Thanks!!
+​[4:03 PM] Unknown User
+      Unknown User left the conversation.
+    ​[4:03 PM] Boudreau, Mathieu
+    
+Thanks everyone really interesting talks 
+​[4:03 PM] Obradovich, Shannon
+    Thank you!
+
+[4:04 PM] Warkentin, Luke
+    Regarding the apple example and simplicity, as someone who has not done any simulation modelling, I appreciated the very clear step-by-step example starting with the basics. Thanks Daniel!
+
+[4:05 PM] Unknown User
+      Forrest, Robyn removed Hanke, Alex from the meeting.
+      
+    ​[4:05 PM] Unknown User
+      Forrest, Robyn removed Hedges, Kevin J from the meeting.
+      
+    ​[4:05 PM] Unknown User
+      Forrest, Robyn removed Gillespie, Kyle from the meeting.
+      
+    ​[4:05 PM] Unknown User
+      Forrest, Robyn removed Tsitrin, Liza from the meeting.
+      
+    ​[4:05 PM] Unknown User
+      Forrest, Robyn removed Warkentin, Luke from the meeting.
+      
+    ​[4:05 PM] Unknown User
+      Forrest, Robyn removed Milligan, Marina from the meeting.
+      
+    ​[4:05 PM] Unknown User
+      Forrest, Robyn removed Fitzsimmons, Michelle from the meeting.
+      
+    ​[4:05 PM] Unknown User
+      Forrest, Robyn removed Ricard, Daniel from the meeting.
+      
+    
