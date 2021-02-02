@@ -145,7 +145,72 @@ par(mar=c(3,3,0.1,0.3))
 plot(1:20, for.fish.matrix[1,], xlim=c(1,20), ylim=c(0,80), type='l')
 for(r in 2:100){points(1:20,for.fish.matrix[r,],type='l')}
 
+## organise data for JAGS
+dat <- list(N=n.detail, age=detail.df$age, fish.matrix=for.fish.matrix)
+
+inits<-list(list(L0=vb.L0, Linf=vb.Linf.mean, k=vb.k.mean))
+
+params<-c('L0','Linf','k')
+set.seed(1973)
+
+require(runjags)
+require(coda)
+
+
+##### MCMC DIMENSIONS #####
+ni = 500
+nb = 2000
+na = 1000
+nt = 10
+nc = 3
+n.iter = ni + nb
+ 
+##### RUN THE MODEL IN JAGS #####
+
+runJagsOut <- run.jags(model="growth-increments-mixed-effects.txt" ,
+monitor=params ,
+data=dat ,
+#inits = inits,
+n.chains=nc ,
+adapt=na ,
+burnin=nb ,
+sample=ni ,
+thin=nt ,
+summarise=FALSE ,
+plots=FALSE )
+
+
+ss <- summary(runJagsOut)
+
+
+vb.L0
+## VB Linf
+vb.Linf.mean
+vb.Linf.sd
+## VB k
+vb.k.mean
+vb.k.sd
+
+nn <- 1000
+for.gg <- rbind(
+  data.frame(param.name=rep(params,each=nn), case.name=rep("true",nn*length(params)), value=c(rnorm(nn,vb.L0,0), rnorm(nn,vb.Linf.mean, vb.Linf.sd), rnorm(nn,vb.k.mean,vb.k.sd))),
+  data.frame(param.name=rep(params, each=100), case.name=rep("est. (n=100)",100), value=c(ss[1:100,4], ss[101:200,4], ss[201:300,4]))
+)
+
+library(ggplot2)
+for.gg.long <- for.gg
+
+p <- ggplot(for.gg.long, aes(x=as.factor(case.name), y=value)) + 
+  #geom_boxplot() +
+  geom_violin() +
+  facet_grid(rows = vars(param.name), scales="free") 
+
+p
+
+
 ```
+
+
 
 # Age-length keys and calculating catch-at-age
 

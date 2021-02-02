@@ -1,0 +1,36 @@
+model{
+## loop over individuals
+for(i in 1:N){
+
+## length at each year of life for the current individual
+for(a in 1:age[i]){
+
+fish.matrix[i, a] ~ dnorm(y.hat[i,a], tau.y) ## 
+y.hat[i,a] = Linf[i] + (L0[i]-Linf[i]) * exp(-k[i] * a)
+}
+
+# Level-2 parameters
+Linf[i]  ~ dnorm(mu.Linf.raw, tau.Linf)
+k[i]  ~ dnorm(mu.k.raw, tau.k)
+L0[i]  ~ dnorm(mu.L0.raw, tau.L0)
+}
+
+# SD
+tau.y ~ dunif(0,100)
+
+#priors for level-2 parameters
+mu.Linf.raw ~ dnorm(80,10)
+mu.k.raw ~ dnorm(0.25,0.01)
+mu.L0.raw ~ dnorm(2,1)
+ 
+# Precision
+tau.Linf = pow(sig.Linf,-2)
+tau.k = pow(sig.k,-2)
+tau.L0 = pow(sig.L0,-2)
+ 
+# SD of parameters
+sig.Linf ~ dunif(0,10)
+sig.k ~ dunif(0,10)
+sig.L0 ~ dunif(0,10)
+
+}
