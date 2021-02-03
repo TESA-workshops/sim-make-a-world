@@ -42,6 +42,7 @@ vb.fit
 ```
 Now simulate two different growth curves.
 ```{r vb2}
+library(ggplot2)
 ages <- seq(0,25,0.2)
 vb.L0 <- 1
 vb.Linf <- c(60,100)
