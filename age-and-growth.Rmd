@@ -42,6 +42,7 @@ vb.fit
 ```
 Now simulate two different growth curves.
 ```{r vb2}
+library(ggplot2)
 ages <- seq(0,25,0.2)
 vb.L0 <- 1
 vb.Linf <- c(60,100)
@@ -214,3 +215,33 @@ p
 
 # Age-length keys and calculating catch-at-age
 
+An age-length key is simply the number of fish collected at different age-length combinations.
+
+This matrix is then used to calculate the age composition of catch based on the observed length frequencies of the catch.
+
+We will use our simulations to examine how our perception of the age composition of the catch is influenced by whether we use age-length pairs or growth increments.
+
+```{r }
+## obtain 2000 age-length pairs
+n.caught <- 2000
+caught.df <- data.frame(fish.number=sample(1:n.sim, n.caught, replace=FALSE), age=sample(1:20, n.caught, replace=TRUE))
+caught.df$u.id <- paste(caught.df$fish.number, caught.df$age, sep="-")
+
+ss <- which(fishes$u.id %in% caught.df$u.id)
+
+age.length.pairs <- fishes[ss,c("length","age")]
+age.length.pairs$length.cm <- ceiling(age.length.pairs$length)
+
+
+al.key <- as.matrix(table(age.length.pairs$length.cm, age.length.pairs$age))
+dimnames(al.key) <- list(length=as.numeric(dimnames(al.key)[[1]]), age=1:20)
+image(t(al.key))
+
+
+## simulate length frequency samples from the catch
+lf.sim <- ceiling(rnorm(1000, mean=30, sd=10))
+
+## for each length in the sample of length frequencies, allocate an age to each fish based on the age-length key
+
+
+```

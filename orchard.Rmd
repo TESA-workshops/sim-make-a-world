@@ -68,11 +68,10 @@ To correctly estimate the number of trees in the two-tier orchard, we need to sa
 
 For looking at this, let's simulate how our estimate changes as we increase our number of samples. To investigate how additional samples improve our estimate, we will simulate sampling 100 trees and keeping track of our running estimate as we go. 
 ```{r twotier2}
-tree.numbers <- sample(seq(0, n.trees), 100)
+tree.numbers <- sample(seq(n.trees), 100)
 sampling.df <- data.frame(n.samples=1:100,estimate=NA)
 for(i in 1:100){
   sampling.df[i, "estimate"] <- mean(twotier.orchard.df[tree.numbers[1:i], "n.apples"]) * n.trees
-  
 }
 g <- ggplot(sampling.df, aes(x=n.samples, y=estimate)) +
   geom_line() + ylim(5E05, 1E06) + geom_abline(intercept=sum(twotier.orchard.df$n.apples))
@@ -82,35 +81,33 @@ Note how the graph above is only one realisation of obtaining 100 samples, and i
 
 
 ```{r twotier3}
-deterministic.list <- list()
 
 ## plot a large number of realisations of obtaining 100 samples
 n.sim <- 1000
-plot(1:100, rep(1E06,100), type='n', ylim=c(5E05,1E06))
-for(n in 1:n.sim){
-  
-tree.numbers <- sample(seq(0, n.trees), 100)
-sampling.df <- data.frame(n.samples=1:100,estimate=NA)
-for(i in 1:100){
-  sampling.df[i, "estimate"] <- mean(twotier.orchard.df[tree.numbers[1:i], "n.apples"]) * n.trees
-  
-}
-lines(1:100, sampling.df$estimate, colour=adjustcolor('black', alpha=05))
-deterministic.list[[n]] <- sampling.df
-}
-abline(a=sum(twotier.orchard.df$n.apples), b=0, lty=1)
 
-## what is the probability of overestimating the true number of apples?
-## when n=1 samples,
-for (nn in 1:20){
-nnn <- do.call(rbind, lapply(1:n.sim, function(i){deterministic.list[[i]][nn,"estimate"]}))
-tt <- table(nnn > sum(twotier.orchard.df$n.apples))
-print(paste0("n=", nn, " p(overestimate) = ", tt[2]/sum(tt)))
+n.samp <- 100
+est.mat <- matrix(NA, nrow = n.sim, ncol = n.samp)
+dimnames(est.mat) <- list(sim = seq(n.sim), n.samp = seq(n.samp))
+for(i in seq(n.sim)){
+  for(j in seq(n.samp)){
+    sample.trees <- sample(seq(n.trees), j)
+    est.mat[i, j] <- mean(twotier.orchard.df[sample.trees, "n.apples"]) * n.trees
+  }
 }
+
+est.df <- as.data.frame.table(est.mat, responseName = "est", stringsAsFactors = FALSE)
+# plot(est ~ n.samp, data = est.df)
+colMeans(est.mat)
+colMeans(est.mat > sum(twotier.orchard.df$n.apples))
+colMeans(est.mat == sum(twotier.orchard.df$n.apples))
+
+plot(colMeans(est.mat) - sum(twotier.orchard.df$n.apples))
 
 ```
 
 Why is this the case that our number of samples doesn't improve our chance of not overestimating the number of apples in the orchard? And why is it not 50% across the board? Why are the probabilities of overestimating the number of apples smaller when we have an odd number of samples? There is a deterministic explanation to all of the above since there is no stochasticity involved.
+
+*Paul Regular comment:* This is a great example of how a simulation can create unexpected and curious patterns. After some digging, I think the deterministic explanation behind the odd/even pattern is that there is a chance of receiving the exact answer when there are an even number of samples. For instance, when only 2 trees are sampled, there is a 50% chance that the estimate will be exact (i.e. neither over or under estimated).
 
 
 The performance measure that we have identified is the probability of overestimating the number of apples in the orchard, which we can calculate using our simulations.
@@ -150,9 +147,9 @@ n.sims <- 1000
 
 sto.df <- do.call(
   rbind,
-lapply(1:n.sims, 
-       function(s){data.frame(sim.number=s, tree.number=1:n.trees.sto, n.apples=rpois(n.trees.sto, 100))}
-       )
+  lapply(1:n.sims, 
+         function(s){data.frame(sim.number=s, tree.number=1:n.trees.sto, n.apples=rpois(n.trees.sto, 100))}
+  )
   
 )
 
@@ -170,21 +167,21 @@ n.sims <- 1000
 plot(1:30, rep(1E06,30), type='n', ylim=c(5E05,1.5E06))
 for(n in 1:n.sims){
   
-tree.numbers <- sample(seq(0, n.trees), 30)
-sampling.df <- data.frame(n.samples=1:30,estimate=NA)
-for(i in 1:30){
-  sampling.df[i, "estimate"] <- mean(sto.df[tree.numbers[1:i], "n.apples"]) * n.trees.sto
-}
-lines(1:30, sampling.df$estimate)
-stochastic.list[[n]] <- sampling.df
+  tree.numbers <- sample(seq(0, n.trees), 30)
+  sampling.df <- data.frame(n.samples=1:30,estimate=NA)
+  for(i in 1:30){
+    sampling.df[i, "estimate"] <- mean(sto.df[tree.numbers[1:i], "n.apples"]) * n.trees.sto
+  }
+  lines(1:30, sampling.df$estimate)
+  stochastic.list[[n]] <- sampling.df
 }
 abline(a=sum(sto.df$n.apples), b=0, lty=1)
 
 ## 
 ## what is the probability of estimating the true number of apples with more than 10% error?
 for(i in 1:10){
-tt <- table(do.call(rbind, lapply(1:n.sims, function(ns){abs(stochastic.list[[ns]][i,"estimate"] - sum(sto.df[sto.df$sim.number==ns,"n.apples"])) > 0.10*sum(sto.df[sto.df$sim.number==ns,"n.apples"])})))
-print(paste0("n=", i, " p(estimate off by more than 10%)=", tt[2]/sum(tt)))
+  tt <- table(do.call(rbind, lapply(1:n.sims, function(ns){abs(stochastic.list[[ns]][i,"estimate"] - sum(sto.df[sto.df$sim.number==ns,"n.apples"])) > 0.10*sum(sto.df[sto.df$sim.number==ns,"n.apples"])})))
+  print(paste0("n=", i, " p(estimate off by more than 10%)=", tt[2]/sum(tt)))
 }
 
 ```
@@ -203,7 +200,7 @@ loop.list <-list()
 start_time <- Sys.time()
 for(n in 1:n.sims){
   loop.list[[n]] <- data.frame(sim.num=n, rpois(10000, 10))
-  }
+}
 end_time <- Sys.time()
 
 print(paste0("simulating 10000 times 10000 poisson observations in a loop took ", end_time - start_time, " seconds"))
