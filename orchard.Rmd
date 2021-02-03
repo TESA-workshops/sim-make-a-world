@@ -93,29 +93,8 @@ for(i in seq(n.sim)){
     sample.trees <- sample(seq(n.trees), j)
     est.mat[i, j] <- mean(twotier.orchard.df[sample.trees, "n.apples"]) * n.trees
   }
-
-plot(1:100, rep(1E06,100), type='n', ylim=c(5E05,1E06))
-for(n in 1:n.sim){
-  
-tree.numbers <- sample(seq(0, n.trees), 100)
-sampling.df <- data.frame(n.samples=1:100,estimate=NA)
-for(i in 1:100){
-  sampling.df[i, "estimate"] <- mean(twotier.orchard.df[tree.numbers[1:i], "n.apples"]) * n.trees
-  
 }
-lines(1:100, sampling.df$estimate, colour=adjustcolor('black', alpha=05))
-deterministic.list[[n]] <- sampling.df
-}
-abline(a=sum(twotier.orchard.df$n.apples), b=0, lty=1)
 
-## what is the probability of overestimating the true number of apples?
-## when n=1 samples,
-for (nn in 1:20){
-nnn <- do.call(rbind, lapply(1:n.sim, function(i){deterministic.list[[i]][nn,"estimate"]}))
-tt <- table(nnn > sum(twotier.orchard.df$n.apples))
-print(paste0("n=", nn, " p(overestimate) = ", tt[2]/sum(tt)))
-
-}
 est.df <- as.data.frame.table(est.mat, responseName = "est", stringsAsFactors = FALSE)
 # plot(est ~ n.samp, data = est.df)
 colMeans(est.mat)

@@ -239,7 +239,9 @@ image(t(al.key))
 
 
 ## simulate length frequency samples from the catch
-lf.sim <- rnorm(1000, mean=30, sd=10)
+lf.sim <- ceiling(rnorm(1000, mean=30, sd=10))
+
+## for each length in the sample of length frequencies, allocate an age to each fish based on the age-length key
 
 
 ```
