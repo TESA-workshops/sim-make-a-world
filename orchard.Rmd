@@ -30,7 +30,7 @@ uniform.orchard.df <- data.frame(tree.number=1:n.trees.uni, n.apples=n.apples.pe
 ```
 Not surprisingly, the simulated data frame informs us that there are still `r format(nrow(uniform.orchard.df), big.mark=",")` trees in the orchard, with a total of `r format(sum(uniform.orchard.df$n.apples), big.mark=",")` apples.
 
-To estimate the number of trees in the uniform orchard, we only need to sample one tree, and we learn nothing from adding additional samples . We will never overestimate the number of apples in the orchard in this scenario because we have perfect knowledge of the system. Increasing the number of samples does not change our perception of the system.
+To estimate the number of apples in the uniform orchard, we only need to sample one tree, and we learn nothing from adding additional samples . We will never overestimate the number of apples in the orchard in this scenario because we have perfect knowledge of the system. Increasing the number of samples does not change our perception of the system.
 
 ```{r uniform2}
 sampling.df <- data.frame(n.samples=1:100,estimate=NA)
@@ -64,7 +64,7 @@ twotier.orchard.df <- data.frame(tree.number=1:n.trees, n.apples=rep(c(n.apples.
 ```
 Not surprisingly, the simulated data frame informs us that there are still `r format(nrow(twotier.orchard.df), big.mark=",")` trees in the orchard, with a total of `r format(sum(twotier.orchard.df$n.apples), big.mark=",")` apples.
 
-To correctly estimate the number of trees in the tow-tier orchard, we need to sample as little as two trees, if by chance we measure one good tree and one bad tree. As we add additional samples, and we get closer to a 50-50 split between good and bad trees, our estimate will converge towards the true number of apples. We will overestimate the number of apples in the orchard when we have sampled more good trees than bad trees.
+To correctly estimate the number of trees in the two-tier orchard, we need to sample as little as two trees, if by chance we measure one good tree and one bad tree. As we add additional samples, and we get closer to a 50-50 split between good and bad trees, our estimate will converge towards the true number of apples. We will overestimate the number of apples in the orchard when we have sampled more good trees than bad trees.
 
 For looking at this, let's simulate how our estimate changes as we increase our number of samples. To investigate how additional samples improve our estimate, we will simulate sampling 100 trees and keeping track of our running estimate as we go. 
 ```{r twotier2}
@@ -84,6 +84,7 @@ Note how the graph above is only one realisation of obtaining 100 samples, and i
 
 ## plot a large number of realisations of obtaining 100 samples
 n.sim <- 1000
+
 n.samp <- 100
 est.mat <- matrix(NA, nrow = n.sim, ncol = n.samp)
 dimnames(est.mat) <- list(sim = seq(n.sim), n.samp = seq(n.samp))
@@ -92,6 +93,28 @@ for(i in seq(n.sim)){
     sample.trees <- sample(seq(n.trees), j)
     est.mat[i, j] <- mean(twotier.orchard.df[sample.trees, "n.apples"]) * n.trees
   }
+
+plot(1:100, rep(1E06,100), type='n', ylim=c(5E05,1E06))
+for(n in 1:n.sim){
+  
+tree.numbers <- sample(seq(0, n.trees), 100)
+sampling.df <- data.frame(n.samples=1:100,estimate=NA)
+for(i in 1:100){
+  sampling.df[i, "estimate"] <- mean(twotier.orchard.df[tree.numbers[1:i], "n.apples"]) * n.trees
+  
+}
+lines(1:100, sampling.df$estimate, colour=adjustcolor('black', alpha=05))
+deterministic.list[[n]] <- sampling.df
+}
+abline(a=sum(twotier.orchard.df$n.apples), b=0, lty=1)
+
+## what is the probability of overestimating the true number of apples?
+## when n=1 samples,
+for (nn in 1:20){
+nnn <- do.call(rbind, lapply(1:n.sim, function(i){deterministic.list[[i]][nn,"estimate"]}))
+tt <- table(nnn > sum(twotier.orchard.df$n.apples))
+print(paste0("n=", nn, " p(overestimate) = ", tt[2]/sum(tt)))
+
 }
 est.df <- as.data.frame.table(est.mat, responseName = "est", stringsAsFactors = FALSE)
 # plot(est ~ n.samp, data = est.df)
