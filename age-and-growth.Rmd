@@ -42,6 +42,7 @@ vb.fit
 ```
 Now simulate two different growth curves.
 ```{r vb2}
+library(ggplot2)
 ages <- seq(0,25,0.2)
 vb.L0 <- 1
 vb.Linf <- c(60,100)
@@ -213,4 +214,10 @@ p
 
 
 # Age-length keys and calculating catch-at-age
+
+An age-length key is simply the number of fish collected at different age-length combinations.
+
+This matrix is then used to calculate the age composition of catch based on the observed length frequencies of the catch.
+
+We will use our simulations to examine how our perception of the age composition of the catch is influenced by whether we use age-length pairs or growth increments.
 
