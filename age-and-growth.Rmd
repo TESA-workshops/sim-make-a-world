@@ -231,6 +231,8 @@ ss <- which(fishes$u.id %in% caught.df$u.id)
 
 age.length.pairs <- fishes[ss,c("length","age")]
 age.length.pairs$length.cm <- ceiling(age.length.pairs$length)
+
+
 al.key <- as.matrix(table(age.length.pairs$length.cm, age.length.pairs$age))
 dimnames(al.key) <- list(length=as.numeric(dimnames(al.key)[[1]]), age=1:20)
 image(t(al.key))
